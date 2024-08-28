@@ -1,0 +1,22 @@
+{
+  "name": "thread-backend-app",
+  "version": "1.0.0",
+  "description": "Thread application graphql APIs using typescript",
+  "main": "index.js",
+  "author": "Dhruv Solanki",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "tsc-watch --onSuccess \"npm start\""
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "express": "^4.19.2",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.5.4"
+  }
+}
