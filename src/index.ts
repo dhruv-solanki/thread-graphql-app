@@ -1,6 +1,7 @@
 import express from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import createGraphqlServer from "./graphql";
+import contextMiddleware from "./middlewares/context";
 
 async function init() {
     const app = express();
@@ -12,7 +13,9 @@ async function init() {
     const gqlServer = await createGraphqlServer();
 
     // add graphql server as middleware for handling /graphql requests
-    app.use("/graphql", expressMiddleware(gqlServer));
+    app.use("/graphql", expressMiddleware(gqlServer, { 
+        context: contextMiddleware 
+    }));
 
     app.get("/", (req, res) => {
         res.json({ message: "Thread app server is running" });

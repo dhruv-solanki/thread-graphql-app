@@ -1,9 +1,12 @@
 import UserService, { CreateUserInput, UserTokenInput } from "../../services/user";
 
 const queries = {
-    getUsers: async (_: any) => {
-        const res = await UserService.getUsers();
-        return res;
+    getUsers: async (_: any, parameters: any, context: any) => {
+        if(context && context.user) {
+            const res = await UserService.getUsers();
+            return res;
+        }
+        throw new Error("I don't know who are you!");
     },
     getUserToken: async (_: any, {userTokenInput }: { userTokenInput: UserTokenInput }) => {
         const token = await UserService.getUserToken(userTokenInput);
